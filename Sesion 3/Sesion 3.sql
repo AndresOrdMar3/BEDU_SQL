@@ -26,3 +26,10 @@ SELECT clave, id_articulo FROM venta
  SELECT empleado.nombre AS empleado, venta.id_articulo AS articulo FROM empleado JOIN venta ON empleado.id_empleado=venta.id_empleado;
  
  SELECT puesto.nombre AS nombre_de_puesto, COUNT(puesto.nombre) AS total FROM empleado JOIN venta ON empleado.id_empleado=venta.id_empleado JOIN puesto ON empleado.id_puesto=puesto.id_puesto GROUP BY puesto.id_puesto ORDER BY total DESC LIMIT 1;
+
+CREATE VIEW vista_105 AS
+(SELECT puesto.nombre AS nombre_de_puesto, COUNT(puesto.nombre) AS total 
+FROM empleado 
+JOIN venta ON empleado.id_empleado=venta.id_empleado 
+JOIN puesto ON empleado.id_puesto=puesto.id_puesto 
+GROUP BY puesto.id_puesto);
