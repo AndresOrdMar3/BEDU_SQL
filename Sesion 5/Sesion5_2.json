@@ -1,0 +1,13 @@
+[{$match: {
+  property_type:"House"
+}}, {$match: {
+  bedrooms:{$gte:1}
+}}, {$addFields: {
+  costoPhabitacion: {$divide:["$price","$bedrooms"]}
+}}, {$group: {
+  _id: "$address.country",
+  costo_total: {
+    $sum: "$costoPhabitacion"
+  }
+
+  }}]
