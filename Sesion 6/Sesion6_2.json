@@ -1,0 +1,15 @@
+[{$lookup: {
+  from: 'users',
+  localField: 'name',
+  foreignField: 'name',
+  as: 'user_per_comment'
+}}, {$addFields: {
+  usr_objt: {$arrayElemAt:["$user_per_comment",0]}
+}}, {$addFields: {
+  pass_word: "usr_objt.password"
+}}, {$project: {
+  _id:0,
+  name:1,
+  email:1,
+  pass_word:1
+}}]
